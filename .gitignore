@@ -11,6 +11,9 @@ target/
 *.iws
 *.iml
 *.ipr
+*.properties
+src/main/java/ApiClient.java
+src/main/java/ApiConfig.java
 
 ### Eclipse ###
 .apt_generated
