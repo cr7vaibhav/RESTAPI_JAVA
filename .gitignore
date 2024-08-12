@@ -36,6 +36,8 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/java/ApiClient.java
+src/main/java/ApiConfig.java
 
 ### Mac OS ###
 .DS_Store
