@@ -40,28 +40,28 @@ public class RestApiMain {
 
         // GET REQUEST
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://api.assemblyai.com/v2/transcript" + transcript.getId()))
+                .uri(new URI("https://api.assemblyai.com/v2/transcript/" + transcript.getId()))
                 .header("Authorization", apiClient.makeRequest())
                 // .GET() //doesnt need a request body //since GET is the default we dont need
                 // it
                 .build();
 
         while (true) {
-            HttpResponse<String> getResponse = httpClient.send(postRequest, BodyHandlers.ofString()); //sends get request
-            transcript = gson.fromJson(postResponse.body(), Transcript.class);
+            HttpResponse<String> getResponse = httpClient.send(getRequest, BodyHandlers.ofString()); // sends get
+                                                                                                      // request
+            transcript = gson.fromJson(getResponse.body(), Transcript.class);
             System.out.println(transcript.getStatus());
 
-            if("completed".equals(transcript.getStatus())|| "error".equals(transcript.getStatus())){
+            if ("completed".equals(transcript.getStatus()) || "error".equals(transcript.getStatus())) {
                 break;
             }
-            Thread.sleep(1000);//we have to wait atleast a second to send another req
+            Thread.sleep(1000);// we have to wait atleast a second to send another req
         }
 
-        //outside this while loop we know the processing has been completed 
+        // outside this while loop we know the processing has been completed
 
-
-
-        
+        System.out.println("Transcription completed ... ");
+        System.out.println(transcript.getText());
 
     }
 }
